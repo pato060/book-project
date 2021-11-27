@@ -15,50 +15,55 @@ You should have received a copy of the GNU General Public License along with thi
 If not, see <https://www.gnu.org/licenses/>.
 */
 
-import React from 'react'
-import { NavBar } from '../navigation/NavBar'
-import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import React from "react";
+import { NavBar } from "../navigation/NavBar";
+import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import { useHistory } from "react-router-dom";
-import './Layout.css'
+import "./Layout.css";
 
 export function Layout(props: LayoutProps): JSX.Element {
-    const format = (props.centered ? "centered" : "");
-    const history = useHistory();
+  const format = props.centered ? "centered" : "";
+  const history = useHistory();
 
-    function handleClickToGoBack() {
-        history.goBack();
-    }
+  function handleClickToGoBack() {
+    history.goBack();
+  }
 
-    return (
-        <div className="layoutContainer">
-            <div className="navBar">
-                <NavBar />
+  return (
+    <div className="layoutContainer">
+      <div className="navBar" data-testid="navbar">
+        <NavBar />
+      </div>
+      <div className="pageContent">
+        {props.showBackArrow === true && (
+          <div
+            className="back-icon-button-container"
+            onClick={handleClickToGoBack}
+          >
+            <div className="arrow-back">
+              <ArrowBackIcon />
             </div>
-            <div className="pageContent">
-                {props.showBackArrow === true &&
-                    <div className="back-icon-button-container" onClick={handleClickToGoBack}>
-                        <div className="arrow-back">
-                            <ArrowBackIcon />
-                        </div>
-                        Back
-                    </div>
-                }
-                <div className={format}>
-                    <div className="pageHeader">
-                        <h1 className="pageTitle">{props.title}</h1>
-                        {props.btn}
-                    </div>
-                    {props.children}
-                </div>
-            </div>
+            Back
+          </div>
+        )}
+        <div className={format}>
+          <div className="pageHeader">
+            <h1 className="pageTitle" data-testid="pageTitle">
+              {props.title}
+            </h1>
+            {props.btn}
+          </div>
+          {props.children}
         </div>
-    )
+      </div>
+    </div>
+  );
 }
 
 type LayoutProps = {
-    btn?: JSX.Element | JSX.Element[];
-    title: string;
-    centered?: boolean;
-    children?: JSX.Element | JSX.Element[];
-    showBackArrow?: boolean;
-}
+  btn?: JSX.Element | JSX.Element[];
+  title: string;
+  centered?: boolean;
+  children?: JSX.Element | JSX.Element[];
+  showBackArrow?: boolean;
+};

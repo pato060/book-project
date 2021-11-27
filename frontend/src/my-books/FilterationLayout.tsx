@@ -16,7 +16,7 @@ type FilterProps = {
 
 export function FilterationLayout(props: FilterProps): JSX.Element {
     return (
-        <div className="rounded">
+        <div className="rounded" data-testid="filter">
             <FormControl variant="outlined" className="filter">
                 <InputLabel htmlFor="oneThing">Filter</InputLabel>
                 <OutlinedInput

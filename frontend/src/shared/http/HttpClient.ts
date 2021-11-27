@@ -51,7 +51,7 @@ class HttpClientBase {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     get(url: string): any {
         if (this.headers["Authorization"] === null) {
-            window.location.replace("http://localhost:3000/sign-in");
+            // window.location.replace("http://localhost:3000/sign-in");
         }
         const requestOptions = {
             method:Verb.GET,
@@ -68,7 +68,7 @@ class HttpClientBase {
 
     getHeaders() {
         if (this.headers["Authorization"] === null) {
-            window.location.replace("http://localhost:3000/sign-in");
+            // window.location.replace("http://localhost:3000/sign-in");
         } else {
             return this.headers;
         }
